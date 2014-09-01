@@ -2,14 +2,16 @@
 import boto.sqs
 import os, sys
 import json
+import uuid
 
 class UrlPackage(object):
 	"""Class for sending URLs to queue"""
 	def __init__(self,url):
 		self.url = url
+		self.uuid = uuid.uuid4()
 
 	def to_json(self):
-		obj = {"url": self.url }
+		obj = {"url": self.url, "uuid": str(self.uuid) }
 		return json.dumps(obj)
 
 if __name__ == '__main__':
